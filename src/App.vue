@@ -1,32 +1,48 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <!-- bar -->
+    <v-app-bar app color="primary" dark>
+      <v-toolbar-title>TestAss</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn text rounded to="/">Home</v-btn>
+      <v-btn v-if="!loggedIn" text rounded to="/login">Login</v-btn>
+      <v-btn v-if="!loggedIn" text rounded to="/register">Register</v-btn>
+      <!-- Prevent? -->
+      <v-btn v-if="loggedIn" @click.prevent="logout" to="/" color="red"
+        >Logout</v-btn
+      >
+    </v-app-bar>
+    <!-- content -->
+    <v-content>
+      <router-view></router-view>
+    </v-content>
+    <!-- footer -->
+    <v-footer color="primary lighten-1" padless>
+      <v-layout justify-center wrap>
+        <v-flex primary lighten-2 py-4 text-center white--text xs12>
+          {{ new Date().getFullYear() }} —
+          <strong>TestAss</strong>
+        </v-flex>
+      </v-layout>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { authComputed } from './store/helper'
+export default {
+  name: 'App',
 
-#nav {
-  padding: 30px;
-}
+  components: {},
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  data: () => ({}),
+  computed: {
+    ...authComputed
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+    }
+  }
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
