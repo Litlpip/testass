@@ -20,7 +20,7 @@
         ></v-text-field>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn type="submit" color="info" block>Login</v-btn>
+          <v-btn type="submit" name="button" color="info" block>Login</v-btn>
         </v-card-actions>
       </v-form>
     </v-card-text>
@@ -34,11 +34,14 @@ export default {
     return {
       username: '',
       password: '',
-      showPassword: false
+      showPassword: false,
+      error: ''
     }
   },
   methods: {
     login() {
+      this.snackbar = true
+      this.error = ''
       this.$store
         .dispatch('login', {
           username: this.username,
@@ -48,7 +51,8 @@ export default {
           this.$router.push({ name: 'Home' })
         })
         .catch(err => {
-          console.log(Error(err.response.data.error))
+          this.error = err.response.data.error
+          console.log(this.error)
         })
     }
   }

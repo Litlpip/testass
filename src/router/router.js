@@ -27,13 +27,4 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
-router.beforeEach((to, from, next) => {
-  const loggedIn = localStorage.getItem('user')
-  if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
-    next('/')
-  }
-  next()
-})
-
 export default router

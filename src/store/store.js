@@ -24,14 +24,6 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    // register({ commit }, credentials) {
-    //   return axios
-    //     .post('//localhost:8080/register', credentials)
-    //     .then(({ data }) => {
-    //       //console.log(data)
-    //       commit('SET_USER_DATA', data)
-    //     })
-    // },
     login({ commit }, credentials) {
       return axios
         .post('//localhost:8080/login', credentials)
