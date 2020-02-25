@@ -1,5 +1,6 @@
 module.exports = {
   singleQuote: true,
   semi: false,
-  singleAttributePerLine: true
+  singleAttributePerLine: true,
+  htmlWhitespaceSensitivity: 'ignore'
 }

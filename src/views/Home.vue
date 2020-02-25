@@ -5,17 +5,21 @@
     </v-card-title>
     <v-card-text>
       To use this app you'll need to
-      <router-link to="/login">Login</router-link> or
+      <router-link to="/login">Login</router-link>
+      or
       <router-link to="/register">Register</router-link>
     </v-card-text>
   </v-card>
   <v-card v-else>
-    <v-card-text
-      ><p>Id:{{ id }}</p>
+    <v-card-text>
+      <p>Id:{{ id }}</p>
       <p>Username:{{ username }}</p>
-      <p>Avatar: <v-img :src="avatar" width="300"></v-img></p>
-      <p>About:{{ about }}</p></v-card-text
-    >
+      <p>
+        Avatar:
+        <v-img :src="avatar" width="300"></v-img>
+      </p>
+      <p>About:{{ about }}</p>
+    </v-card-text>
   </v-card>
 </template>
 
@@ -36,7 +40,9 @@ export default {
     ...authComputed
   },
   created() {
-    this.getData()
+    if (this.loggedIn) {
+      this.getData()
+    }
   },
   methods: {
     getData() {
