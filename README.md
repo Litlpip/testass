@@ -3,7 +3,7 @@
 ## Launching API
 
 ```
-npm install
+node app
 ```
 
 ## Launching Front
